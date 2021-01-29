@@ -1,31 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="100"
-    >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40"
-        android:background="#c85a54"
-        ></RelativeLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/Layout_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
-        android:background="#ff8a80"
-        ></LinearLayout>
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
+        <RelativeLayout
+            android:id="@+id/Layout_1_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#c85a54"
+
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <TextView
+                android:id="@+id/textView_1"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="Top" />
+            <TextView
+                android:id="@+id/textView_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/textView_1"
+
+                android:layout_margin="8dp"
+                android:layout_toRightOf="@id/textView_1"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:text="Next" />
+            <TextView
+                android:id="@+id/textView_3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/textView_1"
+                android:layout_toLeftOf="@id/textView_4"
+                android:layout_alignBaseline="@id/textView_4"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:padding="4dp"
+                android:text="Left" />
+            <TextView
+                android:id="@+id/textView_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:padding="3dp"
+                android:text="Center" />
+
+            <TextView
+                android:id="@+id/textView_5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/textView_2"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="Right" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/Layout_1_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#ff8a80"
+            >
+            <CalendarView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/frame_calendar"
+                android:visibility="invisible"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/quokka"
+                android:visibility="visible"
+                android:clickable="true"
+                />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/Layout_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
-        android:outlineSpotShadowColor="#c85a54"
+        android:background="#e0e0e0"
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintTop_toBottomOf="@+id/Layout_1"
+        android:padding="12dp"
+        >
+
+        <TableRow
+            android:weightSum="10"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="4"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:ems="10"
+                />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:weightSum="10"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="4"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:ems="10"
+                />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </TableRow>
+
+
+    </TableLayout>
+
+    <GridLayout
+        android:id="@+id/Layout_3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:background="#ffbcaf"
-        ></LinearLayout>
+        android:columnCount="3"
+        android:rowCount="3"
+        android:orientation="vertical"
 
-</LinearLayout>
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintTop_toBottomOf="@+id/Layout_2"
+
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="Click"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="here"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="yes"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="Hi"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="I'm Amy"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="Good"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_rowSpan="2"
+            android:layout_gravity="fill"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            android:text="have a nice day"
+            android:textColor="@color/black" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#aeaeae"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:weightSum="4"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintTop_toBottomOf="@+id/Layout_3"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
