@@ -22,8 +22,8 @@ import com.example.lifecycle_meditation.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
 
-    val TAG: String = "로그"
     private lateinit var binding: ActivitySignupBinding
+    val TAG: String = "로그"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +75,7 @@ class SignupActivity : AppCompatActivity() {
         super.onRestart()
         Log.d(TAG,"SingupActivity - onRestart() called")
 
+
         val pref = getSharedPreferences("pref", 0)
         val checking = pref.getBoolean("checked",false)
 
@@ -86,6 +87,7 @@ class SignupActivity : AppCompatActivity() {
         else{
             binding.readPolicyCheckbox.isChecked= false
         }
+
     }
 
     fun onBackButtonClicked(view: View){
@@ -96,7 +98,7 @@ class SignupActivity : AppCompatActivity() {
     fun onPolicyButtonClicked(view: View){
         Log.d(TAG,"SignupActivity - onPolicyButtonClicked() called")
 
-        intent = Intent(this, PolicyActivity::class.java)
+        val intent = Intent(this, PolicyActivity::class.java)
         startActivity(intent)
     }
 
