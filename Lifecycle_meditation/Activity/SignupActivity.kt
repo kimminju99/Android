@@ -1,76 +1,104 @@
 package com.example.lifecycle_meditation
 
+import android.R
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
-import com.example.lifecycle_meditation.databinding.ActivityLoginBinding
+import android.widget.CheckBox
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.CompoundButtonCompat
+import com.example.lifecycle_meditation.databinding.ActivitySignupBinding
 
-class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+
+class SignupActivity : AppCompatActivity() {
+
     val TAG: String = "로그"
+    private lateinit var binding: ActivitySignupBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG,"LoginActivity - onCreate() called")
+        Log.d(TAG,"SignupActivity - onCreate() called")
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        binding.signBtnInLogin.setOnClickListener{
-            onSignupButtonClicked(view)
-        }
 
         binding.btnBack.setOnClickListener {
             onBackButtonClicked(view)
         }
 
 
+        binding.policyTxt.setOnClickListener {
+            onPolicyButtonClicked(view)
+        }
+
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d(TAG,"LoginActivity - onStart() called")
+        Log.d(TAG,"SignupActivity - onStart() called")
+
+
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG,"LoginActivity - onResume() called")
+        Log.d(TAG,"SignupActivity - onResume() called")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG,"LoginActivity - onPause() called")
+        Log.d(TAG,"SignupActivity - onPause() called")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG,"LoginActivity - onStop() called")
+        Log.d(TAG,"SignupActivity - onStop() called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG,"LoginActivity - onDestroy() called")
+        Log.d(TAG,"SignupActivity - onDestroy() called")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.d(TAG,"LoginActivity - onRestart() called")
-    }
+        Log.d(TAG,"SingupActivity - onRestart() called")
 
-    fun onSignupButtonClicked(view: View){
-        Log.d(TAG,"LoginActivity - onSignupButtonClicked() called")
+        val pref = getSharedPreferences("pref", 0)
+        val checking = pref.getBoolean("checked",false)
 
-        val intent = Intent(this, SignupActivity::class.java)
-        startActivity(intent)
+        Log.v(TAG," - checking : "+checking)
+
+        if(checking){
+            binding.readPolicyCheckbox.isChecked = true
+        }
+        else{
+            binding.readPolicyCheckbox.isChecked= false
+        }
     }
 
     fun onBackButtonClicked(view: View){
-        Log.d(TAG,"LoginActivity - onBackButtonClicked() called")
+        Log.d(TAG,"SignupActivity - onBackButtonClicked() called")
         finish()
     }
+
+    fun onPolicyButtonClicked(view: View){
+        Log.d(TAG,"SignupActivity - onPolicyButtonClicked() called")
+
+        intent = Intent(this, PolicyActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }
