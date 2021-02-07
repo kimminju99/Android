@@ -4,8 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import com.example.lifecycle_meditation.databinding.ActivityLoginBinding.bind
+import com.example.lifecycle_meditation.databinding.ActivityLoginBinding.inflate
 import com.example.lifecycle_meditation.databinding.ActivityMainBinding
+
+import com.example.lifecycle_meditation.databinding.ActivityStartBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG,"MainActivity - onCreate() called")
+        Log.d(TAG,"StartActivity - onCreate() called")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -33,7 +38,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d(TAG,"MainActivity - onStart() called")
+
+        if(getData()){
+            intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onResume() {
@@ -54,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG,"MainActivity - onDestroy() called")
+        removeData()
     }
 
     override fun onRestart() {
@@ -76,9 +87,25 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun getData():Boolean{
+        val account = getSharedPreferences("account",0)
+        val name = account.getString("name","")
+        val email = account.getString("email","")
+        val password = account.getString("password","")
 
+        Log.d(TAG,"MainActivity - onStart() - getData() called : "+ name + " " +email + " " + password)
 
+        if (name.equals("") || email.equals("") || password.equals("")){
+            return false
+        }
+        else{
+            return true
+        }
+    }
 
-
-
+    fun removeData(){
+        val account = getSharedPreferences("account",0)
+        val edit = account.edit()
+        edit.clear()
+    }
 }
