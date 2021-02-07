@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:drawableLeft="@drawable/ic_iconfinder_weather_11_1530383"
+        android:fontFamily="@font/yuseimagic_regular"
+        android:gravity="top"
+        android:text="Silent Moon"
+        android:textColor="#3F414E"
+        android:textSize="20sp"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_home_greeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="left"
+
+        android:orientation="vertical"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintVertical_bias="0.05"
+        android:layout_marginHorizontal="16dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/opensans_regular"
+            android:text="Good Morning"
+            android:textColor="#3F414E"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:fontFamily="@font/opensans_regular"
+            android:text="We Wish you have a good day"
+            android:textColor="#A1A4B2"
+            android:textSize="15sp"
+
+            />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logoutBtn_home"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_home_greeting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        android:layout_marginHorizontal="16dp"
+
+        android:text="log out"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+
+        android:textColor="@color/white"
+        android:fontFamily="@font/opensans_regular"
+
+        android:background="@drawable/btn_radius"
+        android:backgroundTint="#8E97FD"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
