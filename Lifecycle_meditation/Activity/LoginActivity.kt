@@ -53,14 +53,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "LoginActivity - onResume() called")
+        Log.d(TAG, "LoginActivity - onResume() - loadData() called")
 
-
+        loadData()
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG, "LoginActivity - onPause() called")
+        Log.d(TAG, "LoginActivity - onPause() - saveData() called")
 
         saveData()
     }
@@ -72,13 +72,15 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "LoginActivity - onDestroy() called")
+        Log.d(TAG, "LoginActivity - onDestroy() - removeData() called")
+
+        removeData()
     }
 
     override fun onRestart() {
         super.onRestart()
         Log.d(TAG, "LoginActivity - onRestart() called")
-        loadData()
+
     }
 
     fun onSignupButtonClicked(view: View){
@@ -113,7 +115,13 @@ class LoginActivity : AppCompatActivity() {
         edit.putString("email", binding.editTextTextEmailAddress.text.toString())
         edit.putString("password",binding.editTextTextPassword.text.toString())
         edit.apply() // 값 저장
+    }
 
+    fun removeData(){
+        val pref = getSharedPreferences("pref",0)
+        val edit = pref.edit()
+        edit.clear()
+        edit.commit()
     }
 
     fun facebookButtonClicked(view: View){
