@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:orientation="vertical"
+        android:fillViewport="true"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/img_sun_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sun"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"/>
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_back"
+
+                app:layout_constraintBottom_toBottomOf="@id/img_sun_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="@id/img_sun_main"
+                app:layout_constraintVertical_bias="0" />
+
+            <LinearLayout
+                android:id="@+id/explain_linear_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical"
+
+                app:layout_constraintBottom_toTopOf="@id/tv_pickMusic_main"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_sun_main"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="Happy Morning"
+                    android:textColor="#3F414E"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="Course"
+                    android:textAllCaps="true"
+                    android:textColor="#A1A4B2"
+                    android:textSize="15sp"
+
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="Ease the mind into a restful night's sleep with\nthese deep, amblent tones."
+                    android:textColor="#A1A4B2"
+
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_heart" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="24,234 Favorites"
+                            android:textColor="#A1A4B2"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_music" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="34,234 Listening"
+                            android:textColor="#A1A4B2"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_pickMusic_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="Pick a Music"
+                android:textColor="#3F414E"
+
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/explain_linear_main"
+                app:layout_constraintBottom_toTopOf="@id/listView_main"
+
+                android:layout_marginBottom="16dp"/>
+
+            <ListView
+                android:id="@+id/listView_main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.8"
+
+                app:layout_constraintVertical_bias="0.6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                tools:listitem="@layout/playlist_item"
+                >
+
+            </ListView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
