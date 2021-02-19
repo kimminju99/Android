@@ -26,12 +26,18 @@ class SecondActivity : AppCompatActivity() {
         var title = readData?.getString("content_title","")
         var place = readData?.getString("content_place","")
         var price = readData?.getString("content_price","")
+        var content = readData?.getString("content_content","")
+
+        // 데이터 set
         if (image != null) {
             binding.imageViewSecond.setImageResource(image)
         }
         binding.tvTitleSecond.setText(title)
         binding.tvPlaceSecond.setText(place)
         binding.tvPriceSecond.setText(price)
+        binding.tvContentSecond.setText(content)
+
+
 
         // 뒤로가기
         binding.btnBack.setOnClickListener {
