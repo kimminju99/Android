@@ -121,6 +121,7 @@
             android:layout_marginTop="4dp"
             />
         <TextView
+            android:id="@+id/tv_content_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="기스 흠집 아예 없어요\n사용 거의 안했어요. 새거라고 보시면 됩니다.\n화질 완전 좋아요\n\n직거래, 택배 가능합니다!"
@@ -168,7 +169,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#ef904f"
+            android:backgroundTint="@color/colorAccent"
             android:text="채팅으로 거래하기"
             android:textStyle="bold"
             android:textColor="@color/white"

@@ -77,6 +77,26 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_main"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:clickable="true"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintBottom_toTopOf="@id/menu_bottomNavigation"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:layout_margin="16dp"
+
+        app:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white"
+        android:scaleType="fitXY"
+        />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_bottomNavigation"
         android:layout_width="match_parent"
