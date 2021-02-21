@@ -20,22 +20,6 @@ class MyListViewAdapter(val context: Context, val modelList:ArrayList<MyModel>) 
         return modelList[position]
     }
 
-    fun getItemImage(position: Int):Int?{
-        return modelList[position].image
-    }
-
-    fun getItemTitle(position: Int):String?{
-        return modelList[position].title
-    }
-
-    fun getItemPlace(position: Int):String?{
-        return modelList[position].place
-    }
-
-    fun getItemPrice(position: Int):String?{
-        return modelList[position].price
-    }
-
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
@@ -50,6 +34,7 @@ class MyListViewAdapter(val context: Context, val modelList:ArrayList<MyModel>) 
         val place = binding.tvPlaceMyListViewAdapter
         val price = binding.tvPriceMyListViewAdapter
 
+
         val item = modelList[position]
 
         // 각 item adapter에 연결하기
@@ -60,6 +45,7 @@ class MyListViewAdapter(val context: Context, val modelList:ArrayList<MyModel>) 
 
         return binding.root
     }
+
 
 
 }

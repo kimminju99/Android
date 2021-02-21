@@ -48,7 +48,7 @@ class addActivity : AppCompatActivity() {
                 temp = MyModel(R.drawable.item_add,title,place,content = content)
             }
             else if(!price.equals("")&& content.equals("")){
-                temp = MyModel(R.drawable.item_add,title,place,price)
+                temp = MyModel(R.drawable.item_add,title,place,price+"원")
             }
             else{
                 temp = MyModel(R.drawable.item_add,title,place,price+"원",content)
