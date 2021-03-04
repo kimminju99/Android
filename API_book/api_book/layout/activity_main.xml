@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+            app:navigationIconTint="@color/dark_gray"
+            app:title="검색결과"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Note: A RecyclerView can also be used -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_search_main"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_search_24"
+                    android:layout_marginRight="4dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    />
+                <EditText
+                    android:id="@+id/et_search_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="책제목 또는 저자명을 입력하세요"
+                    android:layout_toEndOf="@id/img_search_main"
+                    android:fontFamily="@font/nanum_regular"
+                    android:textSize="15sp"
+                    />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_cancel_main"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_cancel_24"
+                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible"
+                    />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 />
+        </LinearLayout>
+        <!-- Scrollable content -->
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
