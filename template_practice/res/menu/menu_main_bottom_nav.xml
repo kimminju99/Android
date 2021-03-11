@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main_btm_nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_view"
+        android:title="홈"/>
+    <item
+        android:id="@+id/menu_main_btm_nav_my_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting_view"
+        android:title="마이페이지"/>
+    <item
+        android:id="@+id/menu_main_btm_nav_test"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_pan_tool_24"
+        android:title="테스트"/>
+
+</menu>
