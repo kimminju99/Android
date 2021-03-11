@@ -1,12 +1,14 @@
 package com.example.api_book.retrofit
 
+import android.text.Html
+
 data class ResultGetSearch (
     var total:Int=0,
     var items:List<Items>
 )
 
 data class Items(
-    var title:String ="",
+    var title:String="",
     var image:String ="",
     var author:String="",
 )

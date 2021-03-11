@@ -11,6 +11,7 @@ interface INaverAPI {
         @Header("X-Naver-Client-Id") clientId: String,
         @Header("X-Naver-Client-Secret") clientSecret: String,
         @Query("query") query: String,  // 검색어
+        @Query("display") display: Int?,  // 출력 건수 (기본 10)
         @Query("sort") sort: String?=null,    // 정렬 옵션
         @Query("d_titl") d_titl: String?=null,    // 책 제목
         @Query("d_auth") d_auth: String?=null,    // 저자

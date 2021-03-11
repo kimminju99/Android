@@ -2,6 +2,7 @@ package com.example.api_book
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -31,12 +32,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Log.d(TAG,"MainActivity - onCreate() called")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // context 가져오기
-        MyContext.Companion.setContext(this)
+        MyContext.setContext(this)
 
 
         //edit text enter 누르면 검색결과 보여줌
@@ -51,26 +53,18 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //검색 글자 입력시 x 버튼 나오게
-        binding.etSearchMain.doOnTextChanged { text, start, before, count ->
-            if (binding.etSearchMain.toString().count() > 0) {
-                binding.btnCancelMain.visibility = View.VISIBLE
-            }
-            else{
-                binding.btnCancelMain.visibility = View.INVISIBLE
-            }
-        }
+        // 검색어 입력했을 때 변화들
+        changeEditText()
 
-        // x 누르면 글자 사라지게
-        binding.btnCancelMain.setOnClickListener {
-            binding.etSearchMain.setText(null)
-        }
 
         //뒤로가기
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
 
+        // recycler View
+        binding.recyclerViewMain.layoutManager = GridLayoutManager(this, 3)
+        binding.recyclerViewMain.adapter = bookAdapter
 
     }
 
@@ -78,11 +72,13 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "보여줘 ${binding.etSearchMain.text}", Toast.LENGTH_SHORT).show()
         RetrofitManager.instance.search(
             binding.etSearchMain.text.toString(),
-            completion = { responseState, responseDataList ->
+            completion = { responseState, responseDataList, totalBook ->
                 when (responseState) {
                     RESPONSE_STATE.OKAY -> {
-                        Log.d(TAG, "api 호출 성공 : ${responseDataList}")
+                        Log.d(TAG, "api 호출 성공 : ${totalBook} : ${responseDataList}")
                         bookList = responseDataList!!
+                        binding.cardViewResultMain.visibility= View.VISIBLE
+                        binding.countResultMain.text=totalBook.toString()
                         connectRecyclerView()
                     }
                     RESPONSE_STATE.FAIL -> {
@@ -98,10 +94,9 @@ class MainActivity : AppCompatActivity() {
 
     fun connectRecyclerView() {
         // recyclerView 어댑터 연결 및 보여주기
-        Log.d(TAG, "MainActivity - connectRecyclerView() called - ${bookList}")
+        Log.d(TAG, "MainActivity - bookList - ${bookList}")
         bookAdapter.submitList(bookList)
-        binding.recyclerViewMain.layoutManager = GridLayoutManager(this, 3)
-        binding.recyclerViewMain.adapter = bookAdapter
+        bookAdapter.notifyDataSetChanged()
     }
 
     fun hideKeyboard(){
@@ -112,4 +107,27 @@ class MainActivity : AppCompatActivity() {
             InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
+
+    fun changeEditText(){
+        //검색 글자 입력시 x 버튼 나오게
+        binding.etSearchMain.doOnTextChanged { text, start, before, count ->
+            if (binding.etSearchMain.toString().count() > 0) {
+                binding.btnCancelMain.visibility = View.VISIBLE
+            }
+            else{
+                binding.btnCancelMain.visibility = View.INVISIBLE
+            }
+        }
+
+        // x 누르면 글자 사라지게
+        binding.btnCancelMain.setOnClickListener {
+            binding.etSearchMain.setText(null)
+            binding.btnCancelMain.visibility = View.INVISIBLE
+            binding.cardViewResultMain.visibility = View.INVISIBLE
+            bookList.clear()
+            bookAdapter.notifyDataSetChanged()
+        }
+    }
+
+
 }

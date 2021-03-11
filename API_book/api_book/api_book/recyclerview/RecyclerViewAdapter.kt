@@ -28,6 +28,7 @@ class RecyclerViewAdapter: RecyclerView.Adapter<ItemViewHolder>() {
     // 외부에서 어댑터에 배열 넣어주기
     fun submitList(list:ArrayList<Book>){
         this.itemList = list
+        notifyDataSetChanged()
     }
 }
 

@@ -12,7 +12,7 @@ class RetrofitClient {
 
     // retrofit client 가져오기
     fun getClient(baseUrl:String): Retrofit? {
-        Log.d(TAG,"RetrofitClient - getClient() called")
+        //Log.d(TAG,"RetrofitClient - getClient() called")
         if (retrofitClient == null){
             retrofitClient = Retrofit.Builder()
                 .baseUrl(baseUrl)

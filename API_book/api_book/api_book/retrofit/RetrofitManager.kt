@@ -1,5 +1,6 @@
 package com.example.api_book.retrofit
 
+import android.text.Html
 import android.util.Log
 import com.example.api_book.recyclerview.Book
 import com.example.api_book.utils.API.BASE_URL
@@ -23,8 +24,8 @@ class RetrofitManager {
     private val retrofit: Retrofit? = RetrofitClient().getClient(BASE_URL)
     private val myAPI :INaverAPI  = retrofit!!.create(INaverAPI::class.java)
 
-    fun search(searchTerm:String, completion:(RESPONSE_STATE,ArrayList<Book>?)->Unit){
-        val call = myAPI.getSearch(CLIENT_ID, CLIENT_SECRET,searchTerm)
+    fun search(searchTerm:String, completion:(RESPONSE_STATE,ArrayList<Book>?,Int)->Unit){
+        val call = myAPI.getSearch(CLIENT_ID, CLIENT_SECRET,searchTerm,display = 18)
 
         call.enqueue(object :Callback<ResultGetSearch>{
             override fun onResponse(
@@ -39,21 +40,22 @@ class RetrofitManager {
 
                             // 데이터 없으면 no_content 보내기
                             if (it.total == 0){
-                                completion(RESPONSE_STATE.NO_CONTENT, null)
+                                completion(RESPONSE_STATE.NO_CONTENT, null,0)
                             }
                             // 데이터 있으면 받아오기
                             else{
                                 // item 하나씩 꺼내서 BookList에 넣기
                                 it.items.forEach { resultItem->
                                     val BookItem = Book(
-                                        title = resultItem.title,
+                                        title = stripHtml(resultItem.title),
                                         image = resultItem.image,
-                                        author = resultItem.author
+                                        author = stripHtml(resultItem.author)
                                     )
                                     parsedBookDataList.add(BookItem)
                                 }
+                                Log.d(TAG,"RetrofitManager - ${parsedBookDataList}")
                                 // main_activity로 보내주기
-                                completion(RESPONSE_STATE.OKAY,parsedBookDataList)
+                                completion(RESPONSE_STATE.OKAY,parsedBookDataList, it.total)
                             }
                         }
 
@@ -64,11 +66,16 @@ class RetrofitManager {
 
             override fun onFailure(call: Call<ResultGetSearch>, t: Throwable) {
                 Log.d(TAG,"RetrofitManager - onFailure() called - t:$t")
-                completion(RESPONSE_STATE.FAIL,null)
+                completion(RESPONSE_STATE.FAIL,null,0)
             }
 
         })
 
+    }
+
+    // html Tag 문자열에서 String 값만 빼오기
+    fun stripHtml(html:String): String {
+        return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString()
     }
 
 }

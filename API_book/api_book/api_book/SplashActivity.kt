@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun goMainGame(){
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, BottomNavigationActivity::class.java)
         startActivity(intent)
         finish()
     }
